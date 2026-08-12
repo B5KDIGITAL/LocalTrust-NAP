@@ -1,5 +1,5 @@
-fastapi
-uvicorn
-google-genai
-supabase
-playwright
+fastapi==0.141.1
+uvicorn==0.52.1
+google-genai==2.17.0
+supabase==2.31.0
+playwright==1.62.0
