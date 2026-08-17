@@ -1,1 +1,19 @@
-The repository currently only contains a README.md and requirements.txt. No source code is present to audit or optimize.
+Audit Findings for main-collection-banner.liquid
+
+1. Performance Optimization (LCP):
+   - The hero image was missing `fetchpriority: 'high'` and `preload: true`. As the main image of the collection banner (above the fold), adding these attributes tells the browser to prioritize loading this image, significantly improving Largest Contentful Paint (LCP).
+
+2. Code Maintainability & CSS Extraction:
+   - Extensive inline styles were used throughout the snippet. Inline styles reduce reusability, make the code harder to read, and increase the HTML payload size.
+   - Extracted all inline styles into a dedicated `{%- style -%}` block utilizing dynamic scoped classes (e.g. `collection-hero-{{ section.id }}`).
+
+3. Schema & Section Padding:
+   - The wrapper element included a `section-{{ section.id }}-padding` class, but the schema was missing padding settings (`padding_top`, `padding_bottom`).
+   - Added these settings to the schema with sensible defaults and range configurations.
+   - Implemented dynamic CSS variables/values inside the `{% style %}` block to actually apply the configured padding and scale it responsively for smaller screens.
+
+4. Image Alt Attribute:
+   - Evaluated the image alt attribute, which already correctly defaults to the escaped collection title.
+
+5. Responsiveness:
+   - Typography uses modern clamp functions (`clamp(...)`) to ensure it scales smoothly between viewport sizes. No changes needed there.
