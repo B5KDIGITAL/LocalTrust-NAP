@@ -1,5 +1,14 @@
 {{ 'ritual-core.css' | asset_url | stylesheet_tag }}
 
+<style>
+  .collection-hero__title {
+    font-size: clamp(3rem, 6vw, 6rem);
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+    color: var(--text-linen, #f0ebe1);
+  }
+</style>
+
 <div class="section-{{ section.id }}-padding" style="background-color: var(--background-dark, #121212); position: relative; overflow: hidden;">
   <section class="collection-hero" style="position: relative; min-height: 40vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: 8vw 4vw;">
     {% if section.settings.show_image and collection.image %}
@@ -10,7 +19,7 @@
     {% endif %}
 
     <div style="position: relative; z-index: 2; max-width: 900px; margin: 0 auto;">
-      <h1 class="heading-grotesque" style="font-size: clamp(3rem, 6vw, 6rem); line-height: 0.95; margin-bottom: 1.5rem; color: var(--text-linen, #f0ebe1);">
+      <h1 class="heading-grotesque collection-hero__title">
         {{ collection.title | escape }}
       </h1>
       {% if section.settings.show_description and collection.description != blank %}
