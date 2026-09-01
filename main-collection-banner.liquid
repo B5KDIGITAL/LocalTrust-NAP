@@ -15,7 +15,7 @@
       </h1>
       {% if section.settings.show_description and collection.description != blank %}
         <div style="font-size: clamp(1.1rem, 1.8vw, 1.4rem); line-height: 1.5; opacity: 0.75; color: rgba(240, 235, 225, 0.75); max-width: 700px; margin: 0 auto;">
-          {{ collection.description }}
+          {{ collection.description | escape }}
         </div>
       {% endif %}
     </div>
