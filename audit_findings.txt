@@ -1,1 +1,12 @@
-The repository currently only contains a README.md and requirements.txt. No source code is present to audit or optimize.
+Audit Findings for main-collection-banner.liquid:
+
+1.  **Image Optimization / LCP (Largest Contentful Paint):**
+    *   The collection hero image lacks attributes to optimize for LCP. It is missing the `loading: 'eager'` and `fetchpriority: 'high'` attributes, which are crucial for hero images that are immediately visible above the fold.
+2.  **Alt Text Safety:**
+    *   The alt text for the image relies on `collection.title | escape`. It is better practice to check for explicitly defined image alt text first (`collection.image.alt`) and fallback to the title, ensuring screen readers get the most descriptive text available.
+3.  **Inline CSS:**
+    *   The snippet heavily relies on inline styles. While sometimes necessary for highly dynamic settings, separating these into a stylesheet (like `ritual-core.css` which is already included) would improve maintainability and performance.
+
+Recommended Actions:
+- Add `loading: 'eager'` and `fetchpriority: 'high'` to the hero image tag.
+- Update the alt text logic to prefer `collection.image.alt` with a fallback to `collection.title`.
